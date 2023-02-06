@@ -1,9 +1,15 @@
-import cv2
+from utils import getImage, getAA_01
 
-img = cv2.imread("img.png", cv2.IMREAD_COLOR)
-shrink = cv2.resize(img, None, fx = 1., fy = 1., interpolation = cv2.INTER_AREA)
+def main():
+    # RESIZE_RATE * 100 = PERSENT
+    RESIZE_RATE = 0.2  # 원본의 20% (축소)
 
-cv2.imshow('image', shrink)
+    img, HEI, WID = getImage('./img/lena.png', RESIZE_RATE)
 
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+    for h in range(HEI):
+        for w in range(WID):
+            print(getAA_01(img[h][w]), end="")
+        print()
+
+if __name__ == '__main__':
+    main()
